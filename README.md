@@ -1,258 +1,234 @@
-AI Auto-Category & Tag Generator
-Module 1 Output
+# AI Auto-Category & Tag Generator
+## Module 1 Output
 
-[Image: Category Generator Interface]
-[Image: Category Generator Results]
+![Category Generator](Image.png)
+![Category Generator](imag1.png)
+## Overview
 
-📋 OVERVIEW
+This project implements **Module 1: AI Auto-Category & Tag Generator** from the Rayeva AI Systems Assignment.
 
-This project implements Module 1: AI Auto-Category & Tag Generator from the Rayeva AI Systems Assignment — an intelligent classification system designed to reduce manual catalog effort in sustainable ecommerce platforms through automated product metadata generation.
+The purpose of this module is to reduce manual catalog effort in sustainable ecommerce platforms by automatically classifying products and generating metadata using AI.
 
-The system analyzes product descriptions and leverages AI to instantly generate:
+The system analyzes a product description and automatically generates:
 
-✅ Primary category classification
-✅ Relevant sub-category suggestions
-✅ Optimized SEO tags
-✅ Sustainability filter identification
+* Primary category
+* Sub-category
+* SEO tags
+* Sustainability filters
 
-All outputs are returned in structured JSON format, ready for database storage and downstream processing.
+The output is returned in **structured JSON format** and can be stored in a database for further processing.
 
 ---
 
-✨ FEATURES
+# Features
 
-1. 🎯 Auto Assign Primary Category
-The AI intelligently selects the correct primary category from a predefined list, ensuring consistent product classification:
+## 1. Auto Assign Primary Category
 
-- Personal Care
-- Kitchen
-- Office Supplies
-- Packaging
-- Clothing
-- Home & Living
-- Food & Beverage
+The AI automatically selects the correct **primary category from a predefined list**.
 
-2. 🔍 Intelligent Sub-category Suggestion
-Goes beyond basic categorization by suggesting specific, context-aware sub-categories:
+Example categories:
+
+* Personal Care
+* Kitchen
+* Office Supplies
+* Packaging
+* Clothing
+* Home & Living
+* Food & Beverage
+
+This ensures consistent product classification.
+
+---
+
+## 2. Sub-category Suggestion
+
+The AI suggests a **more specific sub-category** based on the product description.
 
 Example:
-Category: Personal Care → Sub-category: Oral Care
 
-3. 🏷️ SEO Tag Generation
-Automatically generates 5–10 relevant SEO tags to maximize product discoverability:
+Category: Personal Care
+Sub-category: Oral Care
 
-["bamboo toothbrush", "eco toothbrush", "plastic free toothbrush", "biodegradable toothbrush", "sustainable oral care"]
+---
 
-4. 🌱 Sustainability Filter Detection
-Identifies key sustainability attributes to power eco-friendly search filters:
+## 3. SEO Tag Generation
 
-- plastic-free
-- compostable
-- vegan
-- recycled
-- biodegradable
-- eco-friendly
-- zero waste
-- ethically sourced
+The system generates **5–10 SEO tags** automatically to improve product discoverability.
 
-5. 📦 Structured JSON Output
-Clean, consistent JSON response ready for API integration:
+Example:
+
+["bamboo toothbrush", "eco toothbrush", "plastic free toothbrush", "biodegradable toothbrush"]
+
+---
+
+## 4. Sustainability Filters
+
+The AI identifies sustainability attributes such as:
+
+* plastic-free
+* compostable
+* vegan
+* recycled
+* biodegradable
+* eco-friendly
+
+These filters help customers easily find environmentally friendly products.
+
+---
+
+## 5. Structured JSON Output
 
 {
-  "category": "Personal Care",
-  "sub_category": "Oral Care",
-  "seo_tags": [
-    "bamboo toothbrush",
-    "eco toothbrush",
-    "plastic free toothbrush",
-    "biodegradable toothbrush",
-    "sustainable oral care"
-  ],
-  "sustainability_filters": [
-    "plastic-free",
-    "biodegradable",
-    "eco-friendly",
-    "vegan"
-  ]
+ "category": "Personal Care",
+ "sub_category": "Oral Care",
+ "seo_tags": [
+  "bamboo toothbrush",
+  "eco toothbrush",
+  "plastic free toothbrush"
+ ],
+ "sustainability_filters": [
+  "plastic-free",
+  "biodegradable",
+  "eco-friendly"
+ ]
 }
 
 ---
 
-🏗️ ARCHITECTURE OVERVIEW
+# Architecture Overview
 
-The system maintains clean separation of concerns between business logic and AI processing:
+The system separates **business logic** from **AI processing**.
 
-┌─────────────────┐
-│  User Input     │
-│  (Description)  │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│ AI Prompt       │
-│ Processing      │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│   Groq LLM      │
-│   (Mixtral)     │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│   JSON Response │
-│   Validation    │
-└────────┬────────┘
-         ↓
-┌─────────────────┐
-│   Database      │
-│    Storage      │
-└─────────────────┘
+User Input (Product Description)
+↓
+AI Prompt Processing
+↓
+Groq LLM
+↓
+Structured JSON Response
+↓
+Database Storage
 
-This modular architecture ensures:
-- Scalability: Easy to swap AI providers
-- Maintainability: Clear separation of concerns
-- Reliability: Structured error handling
+This architecture ensures clean separation between:
+
+* AI logic
+* business rules
+* application layer
 
 ---
 
-🎯 AI PROMPT ENGINEERING
+# AI Prompt Design
 
-The system uses carefully crafted prompts to ensure consistent, high-quality outputs:
+The prompt instructs the AI model to:
+
+1. Choose a category from a predefined list
+2. Suggest a relevant sub-category
+3. Generate 5–10 SEO tags
+4. Identify sustainability filters
+5. Return the result as structured JSON
+
+Example prompt:
 
 You are an AI assistant for a sustainable ecommerce platform.
 
 Select the primary category ONLY from this list:
-[Personal Care, Kitchen, Office Supplies, Packaging, Clothing, 
- Home & Living, Food & Beverage]
+
+Personal Care
+Kitchen
+Office Supplies
+Packaging
+Clothing
+Home & Living
+Food & Beverage
 
 Tasks:
-1. Assign the correct category from the list
-2. Suggest a specific, relevant sub-category
-3. Generate 5-10 SEO-optimized tags
-4. Identify relevant sustainability filters
 
-Return only valid JSON with this exact structure:
-{
-  "category": "",
-  "sub_category": "", 
-  "seo_tags": [],
-  "sustainability_filters": []
-}
+1. Assign the correct category
+2. Suggest a sub-category
+3. Generate SEO tags
+4. Suggest sustainability filters
+
+Return only valid JSON.
 
 ---
 
-🛠️ TECHNOLOGIES USED
+# Technologies Used
 
-| Technology | Purpose |
-|------------|---------|
-| Python 3.9+ | Core programming language |
-| Flask 2.0+ | Web framework |
-| Groq | AI/LLM processing |
-| HTML5/CSS3 | Frontend interface |
-| JSON | Data interchange format |
-| dotenv | Environment configuration |
+* Python
+* Flask
+* Groq API (LLM)
+* HTML / CSS (UI demo)
+* JSON
+* dotenv
 
 ---
 
-🚀 QUICK START GUIDE
+# How to Run
 
-Prerequisites
-- Python 3.9 or higher
-- Groq API key
+Install dependencies:
 
-Installation
-
-1. Clone the repository
-git clone https://github.com/yourusername/ai-category-generator.git
-cd ai-category-generator
-
-2. Install dependencies
 pip install -r requirements.txt
 
-3. Configure environment
-# Create .env file
-echo "GROQ_API_KEY=your_api_key_here" > .env
+Add environment variables:
 
-4. Launch the application
+GROQ_API_KEY=your_api_key
+
+Run the application:
+
 python app.py
 
-5. Access the interface
+Open in browser:
+
 http://127.0.0.1:5000
 
 ---
 
-📝 EXAMPLE USAGE
+# Example Input
 
-Input Description:
+Bamboo toothbrush biodegradable eco friendly plastic free handle
 
-Bamboo toothbrush with charcoal-infused bristles. 
-100% biodegradable handle, plastic-free packaging, 
-and vegan-friendly materials.
+---
 
-Generated Output:
+# Example Output
 
 {
-  "category": "Personal Care",
-  "sub_category": "Oral Care",
-  "seo_tags": [
-    "bamboo toothbrush",
-    "charcoal toothbrush",
-    "biodegradable toothbrush",
-    "plastic free toothbrush",
-    "vegan toothbrush",
-    "eco friendly dental care"
-  ],
-  "sustainability_filters": [
-    "plastic-free",
-    "biodegradable",
-    "vegan",
-    "eco-friendly"
-  ]
+"category": "Personal Care",
+"sub_category": "Oral Care",
+"seo_tags": [
+"bamboo toothbrush",
+"eco toothbrush",
+"plastic free toothbrush"
+],
+"sustainability_filters": [
+"plastic-free",
+"biodegradable",
+"eco-friendly"
+]
 }
 
 ---
 
-📈 PERFORMANCE METRICS
+# Future Improvements
 
-| Metric | Performance |
-|--------|-------------|
-| ⚡ Response Time | < 2 seconds |
-| 🎯 Category Accuracy | 95%+ |
-| 🏷️ Tag Relevance | 90%+ |
-| 🔄 Concurrent Users | 100+ |
+* Category confidence scoring
+* Multi-language product classification
+* AI assisted product description generation
+* Advanced sustainability scoring
 
 ---
+ How to Run
 
-🔮 FUTURE ENHANCEMENTS
+Example:
 
-- 📊 Category Confidence Scoring — Display AI confidence levels
-- 🌍 Multi-language Support — Process descriptions in multiple languages
-- 📝 AI Description Enhancement — Auto-improve product descriptions
-- ♻️ Advanced Sustainability Scoring — Detailed eco-impact metrics
-- 📱 Batch Processing API — Handle bulk product uploads
-- 🔗 E-commerce Platform Integrations — WooCommerce, Shopify plugins
+1. Install dependencies
+pip install -r requirements.txt
 
----
+2. Add API key
+GROQ_API_KEY=your_api_key
 
-🤝 CONTRIBUTING
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (git checkout -b feature/AmazingFeature)
-3. Commit your changes (git commit -m 'Add some AmazingFeature')
-4. Push to the branch (git push origin feature/AmazingFeature)
-5. Open a Pull Request
-
----
-
-📄 LICENSE
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-👨‍💻 AUTHOR
+3. Run project
+python app.py
+# Author
 
 Dhruv Patil
-📧 Email: dhruv.patil@example.com
-🏢 AI Systems Assignment Submission
+AI Systems Assignment Submission
