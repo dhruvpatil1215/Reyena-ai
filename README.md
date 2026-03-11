@@ -75,22 +75,19 @@ These filters help customers easily find environmentally friendly products.
 
 ## 5. Structured JSON Output
 
-Example output:
-
 {
-"category": "Personal Care",
-"sub_category": "Oral Care",
-"seo_tags": [
-"bamboo toothbrush",
-"eco toothbrush",
-"plastic free toothbrush",
-"biodegradable toothbrush"
-],
-"sustainability_filters": [
-"plastic-free",
-"biodegradable",
-"eco-friendly"
-]
+ "category": "Personal Care",
+ "sub_category": "Oral Care",
+ "seo_tags": [
+  "bamboo toothbrush",
+  "eco toothbrush",
+  "plastic free toothbrush"
+ ],
+ "sustainability_filters": [
+  "plastic-free",
+  "biodegradable",
+  "eco-friendly"
+ ]
 }
 
 ---
