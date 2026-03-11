@@ -213,7 +213,18 @@ Bamboo toothbrush biodegradable eco friendly plastic free handle
 * Advanced sustainability scoring
 
 ---
+ How to Run
 
+Example:
+
+1. Install dependencies
+pip install -r requirements.txt
+
+2. Add API key
+GROQ_API_KEY=your_api_key
+
+3. Run project
+python app.py
 # Author
 
 Dhruv Patil
