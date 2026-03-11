@@ -1,5 +1,7 @@
 # AI Auto-Category & Tag Generator
+## Module 1 Output
 
+![Category Generator](image.png)
 ## Overview
 
 This project implements **Module 1: AI Auto-Category & Tag Generator** from the Rayeva AI Systems Assignment.
