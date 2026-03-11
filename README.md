@@ -1,7 +1,7 @@
 # AI Auto-Category & Tag Generator
 ## Module 1 Output
 
-![Category Generator](image.png)
+![Category Generator](Image.png)
 ![Category Generator](imag1.png)
 ## Overview
 
